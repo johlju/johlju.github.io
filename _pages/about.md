@@ -7,14 +7,14 @@ comments: false
 
 {% include toc %}
 
-### Why this blog?
+### Why this blog
 
 When I learn, I generate a lot of notes, documentation and code, those often
 just gather dust on my hard drive. My thought with this blog is that I can share
 all my findings about subjects with the community.
 
 
-### Who am I?
+### Who am I
 
 My hometown currently is Nyköping, Sweden. Whenever I can I like to spend time
 with friends and take (shopping) weekends in different cites. A passion I have is
@@ -41,6 +41,6 @@ from time to time I also get time to improve the resources myself.
 My day job is at D-data AB where I belong to the unit Business Development as a
 Software Architect.
 My focus areas are mostly integration and content management. My responsibilities
-are, among other things, the lifecycle of the software platforms. That the software
+are, among other things, the life cycle of the software platforms. That the software
 platforms are designed to meet the business needs in the short and long term, and
 that the software fits and can be reused in the enterprise architecture.
