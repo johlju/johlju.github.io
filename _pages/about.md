@@ -13,7 +13,6 @@ When I learn, I generate a lot of notes, documentation and code, those often
 just gather dust on my hard drive. My thought with this blog is that I can share
 all my findings about subjects with the community.
 
-
 ### Who am I
 
 My hometown currently is Nyköping, Sweden. Whenever I can I like to spend time
