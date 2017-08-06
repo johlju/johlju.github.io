@@ -180,13 +180,13 @@ paginate_path: /page:num/
 timezone: Europe/Stockholm # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
-# Plugins
+# Plugins (whitelisted by GitHub Pages here; https://pages.github.com/versions/)
 gems:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
-  - jemoji
+  - jekyll-paginate # http://www.rubydoc.info/gems/jekyll-paginate/1.1.0
+  - jekyll-sitemap # http://www.rubydoc.info/gems/jekyll-sitemap/1.1.1
+  - jekyll-gist # http://www.rubydoc.info/gems/jekyll-gist/1.4.1
+  - jekyll-feed # http://www.rubydoc.info/gems/jekyll-feed/0.9.2
+  - jemoji # https://github.com/jekyll/jemoji
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -247,3 +247,9 @@ defaults:
       comments: true
       share: true
       related: true
+  # _foo
+  - scope:
+      path: ""
+      type: foo
+    values:
+      layout: single
