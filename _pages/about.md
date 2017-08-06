@@ -16,12 +16,12 @@ all my findings about subjects with the community.
 
 ### Who am I?
 
-My hometown currently is Nyköping, Sweden. Whenever I can like to spend time
+My hometown currently is Nyköping, Sweden. Whenever I can I like to spend time
 with friends and take (shopping) weekends in different cites. A passion I have is
 to drive motocross, which I try to drive as much as I can. But driving motocross
-isn't jsyt abut the driving (and repairing), you have to focus and look ahead,
-just like when coding, and most everything. You have to be steps ahead so you
-don't get surprised in the next corner.
+isn't just about the driving (and repairing), you have to focus and look ahead,
+just like when coding, and almost everything. You have to be several steps ahead
+so you don't get surprised by what's behind the next corner.
 
 When I not doing that, and not taking power walks, I code PowerShell.
 I love PowerShell, but most of all the PowerShell community! I have the pleasure
@@ -34,14 +34,13 @@ I'm a maintainer for PowerShell DSC module
 For me as a maintainer it involves mostly administrative tasks, for example
 answering issues, tagging issues, tagging pull requests, reviewing code, and
 merging code. It also involves making sure the continuous integration process
-works, helping other contributors with any coding issues that arises, or they
-get stuck.
+works, try to help other contributors with any coding issues that arise.
 Much of the time I dedicate to this maintainer role is spent maintaining, but
 from time to time I also get time to improve the resources myself.
 
-My day job is at D-data AB where I belong to the unit Business Development with
-a role as Software Architect.
-My focus area are mostly integration and content management. My responsible is,
-among other things, the lifecycle of the software platforms. So the software
-platforms is designed to meet the business needs in the short and long term, and
-that it software fits and can be reused in the enterprise architecture.
+My day job is at D-data AB where I belong to the unit Business Development as a
+Software Architect.
+My focus areas are mostly integration and content management. My responsibilities
+are, among other things, the lifecycle of the software platforms. That the software
+platforms are designed to meet the business needs in the short and long term, and
+that the software fits and can be reused in the enterprise architecture.
