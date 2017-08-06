@@ -64,10 +64,12 @@ og_image                 : "/images/johlju.jpg" # Open Graph/Twitter default sit
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : # Person or Organization (defaults to Person)
-  name                   : # If the user or organization name differs from the site's name
+  type                   : "Person" # Person or Organization (defaults to Person)
+  name                   : "Johan Ljunggren" # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
-
+    - "https://twitter.com/johanljunggren"
+    - "https://www.linkedin.com/in/johanljunggren"
+    - "https://plus.google.com/u/0/103499181608029374165"
 # Analytics
 analytics:
   provider               : false # false (default), "google", "google-universal", "custom"
