@@ -72,9 +72,9 @@ social:
     - "https://plus.google.com/u/0/103499181608029374165"
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "custom"
+  provider               : "google" # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          :
+    tracking_id          : "UA-104158525-1"
 
 
 # Site Author
