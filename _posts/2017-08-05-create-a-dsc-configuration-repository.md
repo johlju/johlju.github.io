@@ -35,8 +35,8 @@ This assumes that you have all the required software installed on the client you
 will be working on. And that you have all the necessary accounts on dependent
 services.
 
-> This blog is only tested on Windows, but will hopefully work on any platform with
-> PowerShell installed.
+> This blog post is only tested on Windows, but will hopefully work on any platform
+> with PowerShell installed.
 
 ### Services that are required
 
@@ -98,7 +98,7 @@ register for a free account.
    1. Add correct license for your repository, normally MIT is used for
       Open Source Software (OSS).
 1. Clone the repository locally. This will make a local copy of the repository on
-   your hard drive. *Note: Please replace **USERNAME** with you github account
+   your hard drive. *Please replace **USERNAME** with you github account
    username, for example, my account username is 'johlju'.*
 
    ```powershell
@@ -200,7 +200,7 @@ both methods.
       *permission later.*.
    1. Leave *Application type* as **Web app / API**.
    1. For the mandatory field *Sign-on URL* enter any URL. For example
-      **https://dummy**. *This URL is not of interest since it will not be used*.
+      `https://dummy`. *This URL is not of interest since it will not be used*.
    1. Click on **Create**.
    1. On the list of application registrations, click on the newly created application.
    1. In the blade, look for **Application ID** and save this somewhere as your
@@ -350,8 +350,8 @@ all the id's and password in that file. Even if they are stored encrypted, that
 is not best security wise. Instead we need to remove the secure variables from the
 appveyor.yml file and add them to your AppVeyor account.
 
->Note: If you want to keep the ID's and password encrypted in the appveyor.yml file,
->then you should encrypt the strings using [Encrypt configuration data](https://ci.appveyor.com/tools/encrypt).
+>**Note:** If you want to keep the ID's and password encrypted in the appveyor.yml
+>file, then you should encrypt the strings using [Encrypt configuration data](https://ci.appveyor.com/tools/encrypt).
 >If you choose to keep the values in appveyor.yml, then you can skip this step.
 
 1. Go back to your project in Visual Studio Code (or whatever editor you are using).
@@ -383,8 +383,8 @@ appveyor.yml file and add them to your AppVeyor account.
       1. Hover over the *Value* field and then click on the lock next to it to
          make it a encrypted value.
 
-         >Note: If the value is not secure (encrypted), then anyone sending in a
-         >pull request (PR) could compromise your variables.
+         >**Note:** If the value is not secure (encrypted), then anyone sending
+         >in a pull request (PR) could compromise your variables.
          >Environment variables that are encrypted will not be available for
          >a pull request (PR).
 
@@ -397,7 +397,337 @@ appveyor.yml file and add them to your AppVeyor account.
 
    1. Click **Save**.
 
-## Issues with this article
+### Modify repository files
+
+### Modify module manifest
+
+#### Rename the module folder and the module manifest file
+
+1. Go back to your project in Visual Studio Code (or whatever editor you are using).
+1. Rename the folder 'TemplateConfigModule' to 'DscConfigurationExampleModule'.
+1. Rename the module manifest 'TemplateConfigModule.psd1' to 'DscConfigurationExampleModule.psd1'
+
+>**Note:** The folder name and module manifest file name must have the same name
+>as the repository name, and the folder name must end with 'Module'.
+
+#### Modify the content of the module manifest
+
+For more information regarding how to write a module manifest, please see the
+article [How to Write a PowerShell Module Manifest](https://msdn.microsoft.com/en-us/library/dd878337(v=vs.85).aspx)
+and you can also use the cmdlet [New-ModuleManifest](https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Core/New-ModuleManifest?view=powershell-5.0)
+to create a module manifest.
+
+For this exercise we just change the values in the existing module manifest we
+just renamed.
+
+ 1. Open the module manifest file 'DscConfigurationExampleModule.psd1'.
+ 1. Change the value for property **ModuleVersion** to '1.0.0.0'.
+ 1. Run the cmdlet `New-Guid` and change property **GUID** to the GUID that you
+    got from the cmdlet.
+ 1. The property **RequiredModules** must be changed to the value below
+
+    ```powershell
+    RequiredModules = @('PSDscResources','xComputerManagement')
+    ```
+
+    >**Note:** The property RequiredModules is mandatory, because it is used to
+    >make sure the user has the correct module loaded, but more important for
+    >us it is used during testing to load the correct modules into the test
+    >environment.
+
+ 1. The property **WindowsOSVersion** is not a property that is part of the
+    normal module manifest elements. This property has been added to the **PrivateData**
+    hash table for the purpose of determine which operating systems the tests
+    should run on. Let's change this to property to limit testing on
+    Windows Server 2012 R2 and Windows Server 2016.
+
+    ```powershell
+    WindowsOSVersion = @('2012-R2-Datacenter','2016-Datacenter')
+    ```
+
+    >**Note:** Please set this to the **Sku** for all operating systems your
+    >configuration supports.
+    >If you want to find out which Sku are available then read
+    >[How to find Windows VM images in the Azure Marketplace with Azure PowerShell](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/cli-ps-findimage).
+
+ 1. Change the values in the rest of the properties to something appropriate.
+    Properties that are commented are optional. They can be removed if not used.
+
+    ```powershell
+    Author = 'My Name'
+    CompanyName = 'My Company/My Name'
+    Copyright = '(c) 2017 My Company/My Name. All rights reserved.'
+    Description = 'This module contains my PowerShell DSC solution'
+    LicenseUri = 'https://github.com/USERNAME/DscConfigurationExample/blob/master/LICENSE'
+    ProjectUri = 'https://github.com/USERNAME/DscConfigurationExample'
+    ```
+
+    >**Note:** Some of the properties are required to publish a module
+    >to PowerShell Gallery. Read more in the section
+    >[Sharing relies on completing important metadata](https://github.com/PowerShell/DscConfigurations#sharing-relies-on-completing-important-metadata)
+    >in the [DscConfiguration](https://github.com/PowerShell/DscConfigurations)
+    >repository.
+
+### Add a README to the module
+
+The tests require that a README.md exist in the module folder.
+
+1. Create a new file named 'README.md' under the folder DscConfigurationExampleModule.
+1. In the new markdown file add the below markdown text.
+
+   ```markdown
+   # DSC Configuration Example
+
+   This module contains an example for a DSC Configuration
+   ```
+
+### Modify Configuration Data
+
+The configuration data files contains the properties used by each of the
+configurations.
+
+#### First target node configuration file
+
+1. Rename configuration data file 'TemplateConfig.ConfigData.psd1' to
+   'FirstTargetNode.ConfigData.psd1'.
+1. Open the newly rename file and change the code to this.
+
+   ```powershell
+   @{
+       AllNodes = @(
+           @{
+               NodeName  = 'localhost'
+               GroupName = 'Group1'
+            }
+       )
+   }
+   ```
+
+#### Second target node configuration file
+
+1. Create a new file named 'SecondTargetNode.ConfigData.psd1'.
+1. Open the new file and add this code to it.
+
+   ```powershell
+   @{
+       AllNodes = @(
+           @{
+               NodeName  = 'localhost'
+               PowerPlanName = 'High performance'
+           }
+       )
+   }
+   ```
+
+### Modify Configuration
+
+The configuration files is compiled and ran on the target nodes. They hold
+the actual configuration that should be applied to the target nodes.
+
+#### Prepare the configuration file
+
+We remove the configuration file that came with the template, and then we create
+a new file which holds our configuration for both target nodes.
+
+1. Remove the file named 'TemplateConfig.ps1'.
+1. Run the following in a PowerShell session to create a new file wit correct name.
+   Replace these values to the correct values (you could also edit them later in
+   the resulting file).
+
+   ```powershell
+   $newScriptFileInfoParameters = @{
+       Path = 'C:\source\DscConfigurationExample\DscConfigurationExample.ps1'
+       Version = '1.0.0.0'
+       Author = 'My Name'
+       Description = 'Configurations to configure to target nodes'
+       CompanyName = 'My Company/My Name'
+       Copyright = '(c) 2017 My Company/My Name. All rights reserved.'
+       Tags = @('DSC', 'Config')
+       ProjectUri = 'https://github.com/USERNAME/DscConfigurationExample'
+       LicenseUri = 'https://github.com/USERNAME/DscConfigurationExample/blob/master/LICENSE'
+       RequiredModules = @('PSDscResources', 'xComputerManagement')
+   }
+
+   New-ScriptFileInfo @newScriptFileInfoParameters
+   ```
+
+#### First node configuration
+
+1. Open the file 'DscConfigurationExample.ps1' that was created above.
+1. At the end of the file you find the following code.
+
+   ```powershell
+   <#
+
+   .DESCRIPTION
+   Configurations to configure to target nodes
+
+   #>
+   Param()
+   ```
+
+1. Replace the above block with this code
+
+   ```powershell
+   <#
+       .DESCRIPTION
+           Configuration to configure the first target node
+   #>
+   Configuration FirstTargetNode
+   {
+       Import-DscResource -ModuleName 'PSDscResources'
+
+       Node $AllNodes.NodeName
+       {
+           Group TestGroup
+           {
+               Ensure    = 'Present'
+               GroupName = $Node.GroupName
+           }
+       }
+   }
+   ```
+
+   >**Note:** The named used for the configuration must be equal to what was used
+   >for the configuration data file for the first target node.
+
+#### Second node configuration
+
+1. Open the same file 'DscConfigurationExample.ps1' that was changed above.
+1. At the end of the file add the following code.
+
+   ```powershell
+   <#
+       .DESCRIPTION
+           Configuration to configure the second target node
+   #>
+   Configuration SecondTargetNode
+   {
+       Import-DscResource -ModuleName 'xComputerManagement'
+
+       Node $AllNodes.NodeName
+       {
+           xPowerPlan ChangePowerPlanToHigh
+           {
+               Ensure    = 'Present'
+               GroupName = $Node.GroupName
+           }
+       }
+   }
+   ```
+
+   >**Note:** The named used for the configuration must be equal to what was used
+   >for the configuration data file for the second target node.
+
+### AppVeyor Testing
+
+#### AppVeyor build worker
+
+We would like to use the latest build worker for our testing. So let's update
+appveyor.yml to use the latest build worker.
+
+>**Note:** You can find out which build worker exist in the AppVeyor documentation
+>[Build worker images](https://www.appveyor.com/docs/build-environment/#build-worker-images).
+
+1. Open the file appveyor.yml and add the below line directly after the *Version*
+   dictionary.
+
+   ```yml
+   image: Visual Studio 2017
+   ```
+
+   the result of the first three lines should look like this
+
+   ```yml
+   version: 1.0.{build}.0
+   image: Visual Studio 2017
+   clone_folder: c:\projects\$(APPVEYOR_PROJECT_NAME)
+   ```
+
+#### Azure location for resource provisioning
+
+We need to tell in what location we want to provision resources in Azure.
+
+1. Open the file appveyor.yml and add the below line directly after the *BuildID*
+   dictionary. Change to the location that best fits your need.
+
+   ```yml
+   Location: westeurope
+   ```
+
+   the result of the first three lines should look like this
+
+   ```yml
+   BuildID: $(APPVEYOR_BUILD_ID)
+   Location: westeurope
+   ```
+
+#### Workaround for AppVeyor testing
+
+>**Note:** This will be updated as soon as we get this fixes merged!
+
+Due to bugs in the current version of the test framework ([DscConfiguration.Tests](https://github.com/PowerShell/DscConfiguration.Tests))
+that has not been merged yet, we need to use a branch in my fork that do have
+most fixes (known so far). My working branch is based on @PlagueHO's branch,
+which [awaiting review](https://github.com/PowerShell/DscConfiguration.Tests/pull/21)
+and I'm waiting for that to merge before being able to send in a
+pull request (PR) based on my working branch.
+
+So the working branch we need to use is [fixes-issues](https://github.com/johlju/DscConfiguration.Tests/tree/fixes-issues)
+in my fork.
+
+1. Open the file appveyor.yml and find the following line.
+
+   ```yml
+   - git clone https://github.com/powershell/dscconfiguration.tests
+   ```
+
+1. Replace that line with the below code. When the tests are run this will clone
+   my fork, and then checkout the correct working branch.
+
+   ```yml
+   - git clone https://github.com/johlju/DscConfiguration.Tests
+   - ps: Push-Location
+   - ps: cd "$env:APPVEYOR_BUILD_FOLDER\DscConfiguration.Tests"
+   - git checkout fixes-issues
+   - ps: Pop-Location
+   ```
+
+### Run the tests
+
+#### Run the tests in AppVeyor
+
+##### Push changes to repository
+
+Since we connected AppVeyor to our repository, the only thing we need to do is
+to commit all changes and push to the repository.
+
+>*Note:* You can also commit and push directly from Visual Studio Code if you
+>are using that.
+
+1. Open a PowerShell session and run the following. This will stage all new and
+   changed files, and commit them with the commit message. And after that we push
+   the commit to the branch master in the repository DscConfigurationExample.
+
+   ```powershell
+   cd c:\source\DscConfigurationExample
+   git add .
+   git commit -m "First version of DscConfigurationExample"
+   git push origin master
+   ```
+
+##### View test run in AppVeyor
+
+1. Browse to the [projects in AppVeyor](https://ci.appveyor.com/projects).
+1. Click on the project DscConfigurationExample.
+
+You should now see the test being run in the Console as soon as it starts.
+
+## Complete example
+
+You can find the complete working example here in the repository [DscConfigurationExample](https://github.com/johlju/DscConfigurationExample).
+
+## Issues with this blog post
 
 If you find any issues with this blog article please comment, or
 [submit an issue](https://github.com/johlju/johlju.github.io/issues/new?title=Article:%20{{page.title}})
