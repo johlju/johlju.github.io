@@ -442,7 +442,7 @@ just renamed.
     Windows Server 2012 R2 and Windows Server 2016.
 
     ```powershell
-    WindowsOSVersion = @('2012-R2-Datacenter','2016-Datacenter')
+    WindowsOSVersion = '2012-R2-Datacenter','2016-Datacenter'
     ```
 
     >**Note:** Please set this to the **Sku** for all operating systems your
