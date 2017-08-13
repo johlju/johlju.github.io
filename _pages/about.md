@@ -26,10 +26,10 @@ When I not doing that, and not taking power walks, I code PowerShell.
 I love PowerShell, but most of all the PowerShell community! I have the pleasure
 and honor of collaborating with Microsoft PowerShell Team and contributors all
 over the world in the effort to solve issues and improve the open source
-xSQLServer PowerShell DSC resources.
-I'm a maintainer for PowerShell DSC module
-[xSQLServer](https://github.com/PowerShell/xSQLServer) and
-[xFailOverCluster](https://github.com/PowerShell/xFailOverCluster).
+[xFailOverCluster](https://github.com/PowerShell/xFailOverCluster) PowerShell
+DSC resource module and the [xSQLServer](https://github.com/PowerShell/xSQLServer)
+PowerShell DSC resource module. I'm also a maintainer for both of those
+PowerShell DSC resource modules.
 For me as a maintainer it involves mostly administrative tasks, for example
 answering issues, tagging issues, tagging pull requests, reviewing code, and
 merging code. It also involves making sure the continuous integration process

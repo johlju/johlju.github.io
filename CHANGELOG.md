@@ -1,5 +1,9 @@
 # Change log
 
+## 2017-08-13
+
+- Updated about.md
+
 ## 2017-08-09
 
 - Added README.md.
