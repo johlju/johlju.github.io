@@ -649,16 +649,9 @@ appveyor.yml to use the latest build worker.
 We need to tell in what location we want to provision resources in Azure.
 
 1. Open the file appveyor.yml and add the below line directly after the *BuildID*
-   dictionary. Change to the location that best fits your need.
+   dictionary. Change to the location name to something that best fit your need.
 
    ```yml
-   Location: westeurope
-   ```
-
-   the result of the first three lines should look like this
-
-   ```yml
-   BuildID: $(APPVEYOR_BUILD_ID)
    Location: westeurope
    ```
 
