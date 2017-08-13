@@ -32,7 +32,7 @@ server, and on the second server we will change the power plan.
 ## Preparations
 
 This assumes that you have all the required software installed on the client you
-will be working on. And that you have all the necessary accounts on dependent
+will be working on, and that you have all the necessary accounts on dependent
 services.
 
 > This blog post is only tested on Windows, but will hopefully work on any platform
@@ -45,12 +45,12 @@ services.
 - [GitHub](https://github.com/) free account.
 - [AppVeyor](https://www.appveyor.com/) free account
 
-> **GitHub** and **AppVeyor** is free for public open source repositories.
+> **GitHub** and **AppVeyor** are free for public open source repositories.
 > For this you only need a free account, since the whole point of this is that
 > this repository should be publicly shared with and by the community.
 >
-> An **Azure subscription** comes in different flavours, you can get a 30-day trial,
-> or you get one thru the MSDN subscription, or maybe your company has a subscription
+> An **Azure subscription** comes in different forms, you can get a 30-day trial,
+> or you get one through the MSDN subscription, or maybe your company has a subscription
 > that you are allowed to use. To test this, it's enough to have the trial, for
 > a real project I would recommended having an MSDN subscription.
 
@@ -86,12 +86,12 @@ sure to use the same values throughout the steps.
 
 ### Prepare a repository with the template
 
-If you not already have and account on [GitHub](https://github.com/) then please
+If you don't already have and account on [GitHub](https://github.com/) then please
 register for a free account.
 
 1. Browse to [GitHub](https://github.com/) and log in.
 1. Create a new repository named 'DscConfigurationExample'.
-   1. Add a optional description (can be left empty).
+   1. Add an optional description (can be left empty).
    1. Leave the repository type as 'Public'.
    1. Check the box for 'Initialize this repository with a README'.
    1. Leave the choice for ".gitignore" as 'None'.
@@ -142,7 +142,7 @@ register for a free account.
    code .
    ```
 
-1. If everything worked, it should look like this.
+1. If everything is correct, it should look like this.
 
    In the PowerShell console running **git**.
 
@@ -172,11 +172,11 @@ register for a free account.
 
 ### Preparing Azure subscription
 
-If you not already have an Azure subscription then then please register for a
+If you don't already have an Azure subscription then then please register for a
 [30-day trial Azure subscription](https://azure.microsoft.com/free).
 
 We need a new Azure Active Directory Application account that will be used to
-login to Azure, it need to have the correct permission to create the resources
+login to Azure, it needs to have the correct permission to create the resources
 being used during testing.
 Currently that permission needs to be Contributor on the entire subscription.
 
@@ -253,7 +253,7 @@ both methods.
 
 #### Prepare Azure using PowerShell
 
-For this we are gonna use the script that [@PlagueHO](https://github.com/PlagueHO)
+For this we are ging to use the script that [@PlagueHO](https://github.com/PlagueHO)
 created [here](https://github.com/PowerShell/DscConfigurations/issues/5#issue-234996357)
 with some minor modifications.
 We will use the modified script [here](https://gist.github.com/johlju/301490cc813e4b490a3cecc1f010d921).
@@ -380,8 +380,8 @@ appveyor.yml file and add them to your AppVeyor account.
       1. In the *Name* field, type **TenantId**.
       1. In the *Value* field, type the value for tenant id that you save in the
          previous step.
-      1. Hover over the *Value* field and then click on the lock next to it to
-         make it a encrypted value.
+      1. Hover over the *Value* field and then click on the lock icon next to it
+         to make it a encrypted value.
 
          >**Note:** If the value is not secure (encrypted), then anyone sending
          >in a pull request (PR) could compromise your variables.
@@ -389,7 +389,7 @@ appveyor.yml file and add them to your AppVeyor account.
          >a pull request (PR).
 
    1. Repeat the previous step for the following environment variables, and make
-      sure to secure each value. Use the values you save in the previous steps.
+      sure to secure each value. Use the values you saved in the previous steps.
 
       - SubscriptionID
       - ApplicationID
@@ -530,9 +530,9 @@ We remove the configuration file that came with the template, and then we create
 a new file which holds our configuration for both target nodes.
 
 1. Remove the file named 'TemplateConfig.ps1'.
-1. Run the following in a PowerShell session to create a new file wit correct name.
-   Replace these values to the correct values (you could also edit them later in
-   the resulting file).
+1. Run the following in a PowerShell session to create a new file with the correct
+   name. Replace these values to the correct values (you could also edit them later
+   in the resulting file).
 
    ```powershell
    $newScriptFileInfoParameters = @{
@@ -554,7 +554,7 @@ a new file which holds our configuration for both target nodes.
 #### First node configuration
 
 1. Open the file 'DscConfigurationExample.ps1' that was created above.
-1. At the end of the file you find the following code.
+1. At the end of the file you will find the following code.
 
    ```powershell
    <#
@@ -666,12 +666,12 @@ We need to tell in what location we want to provision resources in Azure.
 
 >**Note:** This will be updated as soon as we get this fixes merged!
 
-Due to bugs in the current version of the test framework ([DscConfiguration.Tests](https://github.com/PowerShell/DscConfiguration.Tests))
-that has not been merged yet, we need to use a branch in my fork that do have
-most fixes (known so far). My working branch is based on @PlagueHO's branch,
-which [awaiting review](https://github.com/PowerShell/DscConfiguration.Tests/pull/21)
-and I'm waiting for that to merge before being able to send in a
-pull request (PR) based on my working branch.
+There are bugs in the current version of the test framework ([DscConfiguration.Tests](https://github.com/PowerShell/DscConfiguration.Tests)).
+The fixes for these bugs has not yet been reviewed and merged, so for that reason
+we need to use a branch in my fork that includes these bug fixes.
+My working branch is based on @PlagueHO's branch, which is [awaiting review](https://github.com/PowerShell/DscConfiguration.Tests/pull/21)
+and I'm waiting for that pull request (PR) to merge before being able to send in
+a pull request (PR) based on my working branch.
 
 So the working branch we need to use is [fixes-issues](https://github.com/johlju/DscConfiguration.Tests/tree/fixes-issues)
 in my fork.
@@ -726,6 +726,8 @@ You should now see the test being run in the Console as soon as it starts.
 ## Complete example
 
 You can find the complete working example here in the repository [DscConfigurationExample](https://github.com/johlju/DscConfigurationExample).
+And in [this build](https://ci.appveyor.com/project/johlju/dscconfigurationexample/build/1.0.8.0)
+in AppVeyor you can se how it should look like when tests are run.
 
 ## Issues with this blog post
 
