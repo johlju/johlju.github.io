@@ -253,7 +253,7 @@ both methods.
 
 #### Prepare Azure using PowerShell
 
-For this we are ging to use the script that [@PlagueHO](https://github.com/PlagueHO)
+For this we are going to use the script that [@PlagueHO](https://github.com/PlagueHO)
 created [here](https://github.com/PowerShell/DscConfigurations/issues/5#issue-234996357)
 with some minor modifications.
 We will use the modified script [here](https://gist.github.com/johlju/301490cc813e4b490a3cecc1f010d921).
@@ -305,7 +305,7 @@ account and give the application account Contributor permission on the subscript
       UserName = $azureActiveDirectoryApplicationName
    }
 
-   $applicationCredential  = Get-Credential @getCredentialParameters
+   $applicationCredential = Get-Credential @getCredentialParameters
 
    $newAzureServicePrincipalParameters = @{
      Name = $azureActiveDirectoryApplicationName
