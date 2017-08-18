@@ -5,7 +5,7 @@ $sourceFullPath = 'V:\Source\minimal-mistakes'
 $destinationFullPath = 'V:\Source\johlju.github.io'
 
 
-$changedFiles = Get-ChildItem -Path $source -Recurse -File -Exclude @(
+$changedFiles = Get-ChildItem -Path $sourceFullPath -Recurse -File -Exclude @(
     '_config.yml'
     'authors.yml'
     'navigation.yml'
@@ -33,6 +33,6 @@ $changedFiles = $changedFiles | Where-Object {
 }
 
 $changedFiles | ForEach-Object -Process {
-    $destinationFullName = $_.FullName -replace ($sourceFullPath -replace '\\','\\'), $destinationFullPath
-    $_ | Copy-Item -Destination $destinationFullName
+    $destinationFullName = ($_.FullName -replace ($sourceFullPath -replace '\\','\\'), $destinationFullPath)
+    $_ | Copy-Item -Destination $destinationFullName -Force
 }

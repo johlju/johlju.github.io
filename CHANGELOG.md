@@ -1,5 +1,9 @@
 # Change log
 
+## 2017-08-18
+
+- Updated theme from origin
+
 ## 2017-08-13
 
 - Updated about.md
