@@ -2,11 +2,15 @@
 
 ## 2017-08-19
 
-Update theme to v4.5.1
+- Update theme from origin.
+
+## 2017-08-19
+
+- Update theme to v4.5.1.
 
 ## 2017-08-18
 
-- Updated theme from origin
+- Updated theme from origin.
 
 ## 2017-08-13
 
