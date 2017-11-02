@@ -1,5 +1,10 @@
 # Change log
 
+## 2017-11-02
+
+- Updated PowerShell script to handle new paths
+- Update theme from origin.
+
 ## 2017-08-19
 
 - Update theme from origin.
