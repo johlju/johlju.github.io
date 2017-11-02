@@ -34,5 +34,6 @@ $changedFiles = $changedFiles | Where-Object {
 
 $changedFiles | ForEach-Object -Process {
     $destinationFullName = ($_.FullName -replace ($sourceFullPath -replace '\\','\\'), $destinationFullPath)
-    $_ | Copy-Item -Destination $destinationFullName -Force
+    New-Item -ItemType File -Path $destinationFullName -Force | Out-Null # Used to touch the file so new paths are created.
+    $_ | Copy-Item -Destination $destinationFullName -Force # Actually copies the new file contents.
 }
