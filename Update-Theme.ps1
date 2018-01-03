@@ -1,8 +1,8 @@
 [CmdletBinding()]
 param()
 
-$sourceFullPath = 'V:\Source\minimal-mistakes'
-$destinationFullPath = 'V:\Source\johlju.github.io'
+$sourceFullPath = 'C:\Source\minimal-mistakes'
+$destinationFullPath = 'C:\Source\johlju.github.io'
 
 
 $changedFiles = Get-ChildItem -Path $sourceFullPath -Recurse -File -Exclude @(
