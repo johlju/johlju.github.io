@@ -81,7 +81,7 @@ analytics:
 author:
   name             : "Johan Ljunggren"
   avatar           : /images/johlju.jpg
-  bio              : "Motocross driver. Software Architect. Likes KTM. Likes everything PowerShell. Maintainer for PowerShell DSC modules xSQLServer and xFailOverCluster."
+  bio              : "Motocross driver. Software Architect. Likes KTM. Likes everything PowerShell. Maintainer for PowerShell DSC modules SqlServerDsc and xFailOverCluster."
   location         : "Nyköping, Sweden"
   email            :
   uri              :

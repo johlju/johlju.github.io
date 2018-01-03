@@ -27,7 +27,7 @@ I love PowerShell, but most of all the PowerShell community! I have the pleasure
 and honor of collaborating with Microsoft PowerShell Team and contributors all
 over the world in the effort to solve issues and improve the open source
 [xFailOverCluster](https://github.com/PowerShell/xFailOverCluster) PowerShell
-DSC resource module and the [xSQLServer](https://github.com/PowerShell/xSQLServer)
+DSC resource module and the [SqlServerDsc](https://github.com/PowerShell/SqlServerDsc)
 PowerShell DSC resource module. I'm also a maintainer for both of those
 PowerShell DSC resource modules.
 For me as a maintainer it involves mostly administrative tasks, for example

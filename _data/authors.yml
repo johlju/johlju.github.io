@@ -2,6 +2,6 @@ Johan Ljunggren:
   name: "Johan Ljunggren"
   uri: "https://twitter.com/johanljunggren"
   email: "johan.ljunggren@shamn.se"
-  bio: "Motocross driver. Software Architect. Likes KTM. Likes everything PowerShell. Maintainer for PowerShell DSC modules xSQLServer and xFailOverCluster."
+  bio: "Motocross driver. Software Architect. Likes KTM. Likes everything PowerShell. Maintainer for PowerShell DSC modules SqlServerDsc and xFailOverCluster."
   avatar: "/images/johlju.jpg"
   twitter: "johanljunggren"
