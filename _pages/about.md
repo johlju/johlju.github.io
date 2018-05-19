@@ -29,7 +29,7 @@ all over the world, in the effort to solve issues and improve the open source
 PowerShell DSC resource modules in the
 [DSC Resource Kit](https://github.com/PowerShell/DscResources). During the 2018
 between the month of April and June I got the opportunity to work full time with
-the PowerShell DSC team on the
+the PowerShell DSC Team on the
 [DSC Resource Kit](https://github.com/PowerShell/DscResources).
 It has been an amazing experience.
 
